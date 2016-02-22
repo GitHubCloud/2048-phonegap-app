@@ -9,9 +9,9 @@ header{
 }
 header h1{
 	font-family: Arial;
-	font-size: 5em;
+	font-size: 4em;
 	font-weight: bold;
-	margin: 0 0 0.25em 0;
+	margin: 0 0 0.15em 0;
 }
 
 #gameStartBtn{
@@ -63,13 +63,11 @@ header #score, header #HighScore{
 	text-align: center;
 	position: absolute;
 }
-
 .copyright{
 	margin-top: 0.5em;
 	font-family: Arial;
 	text-align: center;
 }
-
 .mainCover{
 	background: url("../img/cover.png") no-repeat;
 }
@@ -101,38 +99,4 @@ header #score, header #HighScore{
 }
 .bubbleScore{
 	font-weight: bold;
-}
-
-@media screen and (max-device-width: 510px) {
-	#gridContainer{
-		width: 368px;
-		height: 368px;
-		padding: 16px;
-	}
-	.gridCell{
-		width: 80px;
-		height: 80px;
-	}
-	.numberCell{
-		font-size: 2em;
-		line-height: 2.5em;
-	}
-}
-@media screen and (max-device-width: 410px) {
-	header h1{
-		font-size: 3.5em;
-	}
-	#gridContainer{
-		width: 276px;
-		height: 276px;
-		padding: 12px;
-	}
-	.gridCell{
-		width: 60px;
-		height: 60px;
-	}
-	.numberCell{
-		font-size: 2em;
-		line-height: 2em;
-	}
 }

@@ -1,20 +1,14 @@
+documentWidth = window.innerWidth;
+documentHeight = window.innerHeight;
+gridContainerWidth = 0.92 * documentWidth;
+cellSideWidth = 0.18 * documentWidth;
+cellSpace = 0.04 * documentWidth;
+
 function getPosTop(i, j) {
-	if($(document).width() > 510){
-		return 20 + (i * 120);
-	}else if($(document).width() < 410){
-		return 12 + (i * 72)
-	}else{
-		return 16 + (i * 96)
-	}
+	return cellSpace + (i * (cellSpace + cellSideWidth));
 }
 function getPosLeft(i, j) {
-	if($(document).width() > 510){
-		return 20 + (j * 120);
-	}else if($(document).width() < 410){
-		return 12 + (j * 72)
-	}else{
-		return 16 + (j * 96);
-	}
+	return cellSpace + (j * (cellSpace + cellSideWidth));
 }
 
 function getNumberBGColor(num) {

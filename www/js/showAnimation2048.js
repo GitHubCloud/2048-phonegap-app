@@ -6,18 +6,9 @@ function showNumber(x, y, num) {
 	});
 	numberCell.text(num);
 
-	var size;
-	if($(document).width() > 510){
-		size = "100px";
-	}else if($(document).width() < 410){
-		size = "60px";
-	}else{
-		size = "80px";
-	}
-
 	numberCell.animate({
-		"width": size,
-		"height": size,
+		"width": cellSideWidth + "px",
+		"height": cellSideWidth + "px",
 		"top": getPosTop(x, y),
 		"left": getPosLeft(x, y)
 	},100);

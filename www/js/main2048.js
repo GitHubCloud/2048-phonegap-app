@@ -5,22 +5,24 @@ var hasConflict = new Array();
 var startX, startY, endX, endY = 0;
 
 $(function () {
+	prepareForMobile();
+
 	$(".mainCover").css({
-		"width": $(document).width() + "px",
-		"height": $(document).height() + "px",
-		"background-size": $(document).width() + "px " + $(document).height() + "px",
+		"width": documentWidth + "px",
+		"height": documentHeight + "px",
+		"background-size": documentWidth + "px " + documentHeight + "px",
 		"position": "absolute",
 		"z-index": 1000
 	});
 	$("#wrapper").css({
 		"position": "absolute",
-		"width": $(document).width() + "px",
-		"top": -$(document).height() + "px"
+		"width": documentWidth + "px",
+		"top": -documentHeight + "px"
 	});
 	setTimeout(function () {
 		$(".mainCover").animate({
 			"opacity": 0,
-			"top": -$(document).height() + "px"
+			"top": -documentHeight + "px"
 		},800);
 	},1200);
 	setTimeout(function () {
@@ -43,6 +45,26 @@ $(function () {
 	$("#HighScore").text(localStorage.getItem("HighScore"));
 	gameStart();
 });
+
+function prepareForMobile() {
+	if(documentWidth > 510){
+		gridContainerWidth = 500;
+		cellSpace = 20;
+		cellSideWidth = 100;
+	}
+	$("#gridContainer").css({
+		"width": gridContainerWidth - 2 * cellSpace,
+		"height": gridContainerWidth - 2 * cellSpace,
+		"padding": cellSpace,
+		"border-radius": 0.02 * gridContainerWidth
+	});
+
+	$(".gridCell").css({
+		"width": cellSideWidth,
+		"height": cellSideWidth,
+		"border-radius": 0.02 * cellSideWidth
+	});
+}
 
 function gameStart() {
 	//初始游戏
@@ -84,21 +106,13 @@ function updateBoardView() {
 				theNumberCell.css({
 					"width": "0px",
 					"height": "0px",
-					"top": (getPosTop(i, j) + 50) + "px",
-					"left": (getPosLeft(i, j) + 50) + "px"
+					"top": (getPosTop(i, j) + cellSideWidth/2) + "px",
+					"left": (getPosLeft(i, j) + cellSideWidth/2) + "px"
 				});
 			}else{
-				var size;
-				if($(document).width() > 510){
-					size = "100px";
-				}else if($(document).width() < 410){
-					size = "60px";
-				}else{
-					size = "80px";
-				}
 				theNumberCell.css({
-					"width": size,
-					"height": size,
+					"width": cellSideWidth + "px",
+					"height": cellSideWidth + "px",
 					"top": (getPosTop(i, j)) + "px",
 					"left": (getPosLeft(i, j)) + "px",
 					"background": getNumberBGColor(board[i][j]),
@@ -109,6 +123,10 @@ function updateBoardView() {
 			hasConflict[i][j] = false;
 		}
 	}
+	$(".numberCell").css({
+		"line-height": cellSideWidth + "px",
+		"font-size": 0.6 * cellSideWidth + "px"
+	})
 }
 
 function isGameOver() {
@@ -126,8 +144,8 @@ function GameOver() {
 	console.log($("#bubbleInfo").outerWidth(true));
 	$("#bubbleInfo").css({
 		"display": "block",
-		"top": ($(document).height() - $("#bubbleInfo").outerHeight()) / 2 + "px",
-		"left": ($(document).width() - $("#bubbleInfo").outerWidth() + 40) / 2 + "px"
+		"top": (documentHeight - $("#bubbleInfo").outerHeight()) / 2 + "px",
+		"left": (documentWidth - $("#bubbleInfo").outerWidth() + 40) / 2 + "px"
 	});
 	$(".bubbleScore").text(score);
 }
@@ -203,7 +221,7 @@ document.addEventListener("touchend",function (e) {
 
 	var deltaX = endX - startX;
 	var deltaY = endY - startY;
-	if(Math.abs(deltaX) < 0.1 * $(document).width() && Math.abs(deltaY) < 0.3 * $(document).width()){
+	if(Math.abs(deltaX) < 0.1 * documentWidth && Math.abs(deltaY) < 0.3 * documentWidth){
 		return;
 	}
 	if(Math.abs(deltaX) >= Math.abs(deltaY)){
