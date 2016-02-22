@@ -15,31 +15,36 @@
 	</style>
 </head>
 <body>
-	<header>
-		<h1>2048</h1>
-		<!-- <a href="javascript:gameStart();" id="gameStartBtn">New Game</a> -->
-		<button id="gameStartBtn" onclick="gameStart();">New Game</button>
-		<p>Score: <span id="score">0</span>&nbsp;&nbsp;&nbsp;&nbsp;High Score: <span id="HighScore">0</span></p>
-	</header>
-	<div id="bubbleInfo"></div>
-	<div id="gridContainer">
-		<div class="gridCell" id="gridCell-0-0"></div>
-		<div class="gridCell" id="gridCell-0-1"></div>
-		<div class="gridCell" id="gridCell-0-2"></div>
-		<div class="gridCell" id="gridCell-0-3"></div>
-		<div class="gridCell" id="gridCell-1-0"></div>
-		<div class="gridCell" id="gridCell-1-1"></div>
-		<div class="gridCell" id="gridCell-1-2"></div>
-		<div class="gridCell" id="gridCell-1-3"></div>
-		<div class="gridCell" id="gridCell-2-0"></div>
-		<div class="gridCell" id="gridCell-2-1"></div>
-		<div class="gridCell" id="gridCell-2-2"></div>
-		<div class="gridCell" id="gridCell-2-3"></div>
-		<div class="gridCell" id="gridCell-3-0"></div>
-		<div class="gridCell" id="gridCell-3-1"></div>
-		<div class="gridCell" id="gridCell-3-2"></div>
-		<div class="gridCell" id="gridCell-3-3"></div>
+	<div class="mainCover"></div>
+	<div id="bubbleInfo">
+		<p class="infoContent">游戏结束！您的分数为：<span class="bubbleScore">333333</span></p>
+		<button class="confirmBtn">确认</button>
 	</div>
-	<div class="copyright">Copyright © <a href="tencent://message/?uin=715137511&Site=2048&Menu=yes" target="_blank">Encloud</a></div>
+	<div id="wrapper">
+		<header>
+			<!-- <h1>2048</h1> -->
+			<button id="gameStartBtn" onclick="gameStart();">New Game</button>
+			<p>Score: <span id="score">0</span>&nbsp;&nbsp;&nbsp;&nbsp;High Score: <span id="HighScore">0</span></p>
+		</header>
+		<div id="gridContainer">
+			<div class="gridCell" id="gridCell-0-0"></div>
+			<div class="gridCell" id="gridCell-0-1"></div>
+			<div class="gridCell" id="gridCell-0-2"></div>
+			<div class="gridCell" id="gridCell-0-3"></div>
+			<div class="gridCell" id="gridCell-1-0"></div>
+			<div class="gridCell" id="gridCell-1-1"></div>
+			<div class="gridCell" id="gridCell-1-2"></div>
+			<div class="gridCell" id="gridCell-1-3"></div>
+			<div class="gridCell" id="gridCell-2-0"></div>
+			<div class="gridCell" id="gridCell-2-1"></div>
+			<div class="gridCell" id="gridCell-2-2"></div>
+			<div class="gridCell" id="gridCell-2-3"></div>
+			<div class="gridCell" id="gridCell-3-0"></div>
+			<div class="gridCell" id="gridCell-3-1"></div>
+			<div class="gridCell" id="gridCell-3-2"></div>
+			<div class="gridCell" id="gridCell-3-3"></div>
+		</div>
+		<div class="copyright">Copyright © Encloud</div>
+	</div>
 </body>
 </html>

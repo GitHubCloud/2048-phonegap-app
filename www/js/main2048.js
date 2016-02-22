@@ -5,33 +5,44 @@ var hasConflict = new Array();
 var startX, startY, endX, endY = 0;
 
 $(function () {
-	prepareForMobile();
+	$(".mainCover").css({
+		"width": $(document).width() + "px",
+		"height": $(document).height() + "px",
+		"background-size": $(document).width() + "px " + $(document).height() + "px",
+		"position": "absolute",
+		"z-index": 1000
+	});
+	$("#wrapper").css({
+		"position": "absolute",
+		"width": $(document).width() + "px",
+		"top": -$(document).height() + "px"
+	});
+	setTimeout(function () {
+		$(".mainCover").animate({
+			"opacity": 0,
+			"top": -$(document).height() + "px"
+		},800);
+	},1200);
+	setTimeout(function () {
+		$("#wrapper").animate({
+			"opacity": 1,
+			"top": 0
+		},1000,"swing");
+	},1600)
+
+	$(".confirmBtn").click(function () {
+		$("#bubbleInfo").animate({
+			"top": -$("#bubbleInfo").height() + "px",
+			"opacity": 0
+		},400);
+	});
+
 	if(localStorage.getItem("HighScore") == null){
 		localStorage.setItem("HighScore",0);
 	}
 	$("#HighScore").text(localStorage.getItem("HighScore"));
 	gameStart();
 });
-
-function prepareForMobile() {
-	if(documentWidth > 510){
-		gridContainerWidth = 500;
-		cellSpace = 20;
-		cellSideWidth = 100;
-	}
-	$("#gridContainer").css({
-		"width": gridContainerWidth - 2 * cellSpace,
-		"height": gridContainerWidth - 2 * cellSpace,
-		"padding": cellSpace,
-		"border-radius": 0.02 * gridContainerWidth
-	});
-
-	$(".gridCell").css({
-		"width": cellSideWidth,
-		"height": cellSideWidth,
-		"border-radius": 0.02 * cellSideWidth
-	});
-}
 
 function gameStart() {
 	//初始游戏
@@ -73,13 +84,21 @@ function updateBoardView() {
 				theNumberCell.css({
 					"width": "0px",
 					"height": "0px",
-					"top": (getPosTop(i, j) + cellSideWidth/2) + "px",
-					"left": (getPosLeft(i, j) + cellSideWidth/2) + "px"
+					"top": (getPosTop(i, j) + 50) + "px",
+					"left": (getPosLeft(i, j) + 50) + "px"
 				});
 			}else{
+				var size;
+				if($(document).width() > 510){
+					size = "100px";
+				}else if($(document).width() < 410){
+					size = "60px";
+				}else{
+					size = "80px";
+				}
 				theNumberCell.css({
-					"width": cellSideWidth + "px",
-					"height": cellSideWidth + "px",
+					"width": size,
+					"height": size,
 					"top": (getPosTop(i, j)) + "px",
 					"left": (getPosLeft(i, j)) + "px",
 					"background": getNumberBGColor(board[i][j]),
@@ -90,26 +109,28 @@ function updateBoardView() {
 			hasConflict[i][j] = false;
 		}
 	}
-	$(".numberCell").css({
-		"line-height": cellSideWidth + "px",
-		"font-size": 0.6 * cellSideWidth + "px"
-	})
 }
 
 function isGameOver() {
 	if(noSpace(board) && noMove(board)){
-		//GameOver();
-		var ls = localStorage;
-		if(parseInt(ls.getItem("HighScore")) < parseInt(score)){
-			ls.setItem("HighScore",score);
-			$("#HighScore").text(score)
-		}
-		alert("Game Over!");
+		GameOver();
 	}
 }
-// function GameOver() {
-// 	alert("game over!");
-// }
+function GameOver() {
+	var ls = localStorage;
+	if(parseInt(ls.getItem("HighScore")) < parseInt(score)){
+		ls.setItem("HighScore",score);
+		$("#HighScore").text(score);
+	}
+	console.log($(document).width());
+	console.log($("#bubbleInfo").outerWidth(true));
+	$("#bubbleInfo").css({
+		"display": "block",
+		"top": ($(document).height() - $("#bubbleInfo").outerHeight()) / 2 + "px",
+		"left": ($(document).width() - $("#bubbleInfo").outerWidth() + 40) / 2 + "px"
+	});
+	$(".bubbleScore").text(score);
+}
 
 function createNumber() {
 	if(noSpace(board)){
@@ -182,7 +203,7 @@ document.addEventListener("touchend",function (e) {
 
 	var deltaX = endX - startX;
 	var deltaY = endY - startY;
-	if(Math.abs(deltaX) < 0.3 * documentWidth && Math.abs(deltaY) < 0.3 * documentWidth){
+	if(Math.abs(deltaX) < 0.1 * $(document).width() && Math.abs(deltaY) < 0.3 * $(document).width()){
 		return;
 	}
 	if(Math.abs(deltaX) >= Math.abs(deltaY)){
