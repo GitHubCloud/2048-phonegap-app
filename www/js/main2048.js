@@ -24,13 +24,13 @@ $(function () {
 			"opacity": 0,
 			"top": -documentHeight + "px"
 		},800);
-	},1200);
+	},3200);
 	setTimeout(function () {
 		$("#wrapper").animate({
 			"opacity": 1,
 			"top": 0
 		},1000,"swing");
-	},1600)
+	},3600)
 
 	$(".confirmBtn").click(function () {
 		$("#bubbleInfo").animate({
