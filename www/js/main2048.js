@@ -140,10 +140,9 @@ function GameOver() {
 		ls.setItem("HighScore",score);
 		$("#HighScore").text(score);
 	}
-	console.log($(document).width());
-	console.log($("#bubbleInfo").outerWidth(true));
 	$("#bubbleInfo").css({
 		"display": "block",
+		"opacity": "1",
 		"top": (documentHeight - $("#bubbleInfo").outerHeight()) / 2 + "px",
 		"left": (documentWidth - $("#bubbleInfo").outerWidth() + 40) / 2 + "px"
 	});
