@@ -58,7 +58,6 @@ function prepareForMobile() {
 		"padding": cellSpace,
 		"border-radius": 0.02 * gridContainerWidth
 	});
-
 	$(".gridCell").css({
 		"width": cellSideWidth,
 		"height": cellSideWidth,
@@ -94,6 +93,7 @@ function init() {
 
 	updateBoardView();
 	score = 0;
+	updateScore(score);
 }
 
 function updateBoardView() {

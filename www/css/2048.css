@@ -71,7 +71,11 @@ header #score, header #HighScore{
 .mainCover{
 	background: url("../img/cover.png") no-repeat;
 }
-
+@media (min-width: 520px) {
+	.mainCover{
+		/*display: none;*/
+	}
+}
 #bubbleInfo{
 	display: none;
 	z-index: 500;
